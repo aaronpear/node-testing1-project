@@ -8,6 +8,11 @@
  */
 function trimProperties(obj) {
   // ✨ implement
+  let trimmedObj = {};
+  for (const key in obj) {
+    trimmedObj = {...trimmedObj, [key]: obj[key].trim()};
+  }
+  return trimmedObj;
 }
 
 /**
@@ -20,6 +25,10 @@ function trimProperties(obj) {
  */
 function trimPropertiesMutation(obj) {
   // ✨ implement
+  for (const key in obj) {
+    obj[key] = obj[key].trim();
+  }
+  return obj;
 }
 
 /**
@@ -32,6 +41,15 @@ function trimPropertiesMutation(obj) {
  */
 function findLargestInteger(integers) {
   // ✨ implement
+  let largestInteger;
+  integers.forEach(item => {
+    if (!largestInteger) {
+      largestInteger = item.integer;
+    } else if (item.integer > largestInteger) {
+      largestInteger = item.integer;
+    }
+  })
+  return largestInteger;
 }
 
 class Counter {
@@ -41,6 +59,9 @@ class Counter {
    */
   constructor(initialNumber) {
     // ✨ initialize whatever properties are needed
+    this.initialNumber = initialNumber;
+    this.countFloor = 0;
+    this.totalCalls = 0;
   }
 
   /**
@@ -57,6 +78,17 @@ class Counter {
    */
   countDown() {
     // ✨ implement
+    if (this.totalCalls === 0) {
+      this.totalCalls++;
+      return this.initialNumber;
+    } else if (this.totalCalls > 0 && this.initialNumber > this.countFloor) {
+      this.totalCalls++;
+      this.initialNumber--;
+      return this.initialNumber;
+    } else {
+      this.totalCalls++;
+      return this.initialNumber;
+    }
   }
 }
 
@@ -66,6 +98,8 @@ class Seasons {
    */
   constructor() {
     // ✨ initialize whatever properties are needed
+    this.seasons = ['summer', 'fall', 'winter', 'spring'],
+    this.index = 3;
   }
 
   /**
@@ -82,6 +116,13 @@ class Seasons {
    */
   next() {
     // ✨ implement
+    this.index++;
+    if (this.index > 3) {
+      this.index = 0;
+      return this.seasons[this.index];
+    } else {
+      return this.seasons[this.index];
+    }
   }
 }
 
